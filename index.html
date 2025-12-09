@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Қазақстан туризмі</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/3/32/Kolsay_Lake%2C_Kazakhstan.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #000;
+      overflow-x: hidden;
+    }
+
+    /* LOGIN PAGE */
+    #loginPage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      animation: fadeIn 1.5s ease-in-out;
+      background: url("https://upload.wikimedia.org/wikipedia/commons/e/e1/Almaty_panorama.jpg")
+        no-repeat center center/cover;
+    }
+
+    .login-box {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    input {
+      padding: 10px;
+      margin: 8px;
+      width: 220px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    button {
+      background: #0066cc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #004d99;
+    }
+
+    /* MAIN PAGE */
+    #mainPage {
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 15px 0;
+      text-align: center;
+      backdrop-filter: blur(5px);
+      z-index: 100;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 20px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffeb3b;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+      animation: slideUp 1.5s ease;
+    }
+
+    .city,
+    .review-box,
+    .tour-card {
+      background: rgba(255, 255, 255, 0.8);
+      color: #000 !important;
+      border-radius: 15px;
+      margin: 25px auto;
+      padding: 20px;
+      max-width: 800px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: 0.4s;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .city:hover {
+      transform: scale(1.03);
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border-radius: 12px;
+      margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* GALLERY */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 260px;
+      margin: 10px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .review-box textarea {
+      width: 90%;
+      height: 100px;
+      border-radius: 10px;
+      padding: 10px;
+      border: none;
+      outline: none;
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOGIN PAGE -->
+  <div id="loginPage">
+    <div class="login-box">
+      <h2>🇰🇿 Қазақстан туризміне қош келдіңіз!</h2>
+      <p>Кіру үшін логин мен пароль енгізіңіз</p>
+      <input type="text" id="username" placeholder="Логин" /><br />
+      <input type="password" id="password" placeholder="Құпия сөз" /><br />
+      <button onclick="login()">Кіру</button>
+      <p id="error" style="color: yellow; margin-top: 10px"></p>
+    </div>
+  </div>
+
+  <!-- MAIN PAGE -->
+  <div id="mainPage">
+    <nav>
+      <a href="#almaty">Алматы</a>
+      <a href="#astana">Астана</a>
+      <a href="#burabay">Бурабай</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#tours">Турлар</a>
+      <a href="#reviews">Пікірлер</a>
+      <a href="#quiz">Викторина</a>
+      <a href="#contact">Байланыс</a>
+    </nav>
+
+    <!-- CITY SECTIONS -->
+    <section id="almaty">
+      <h2>🌆 Алматы</h2>
+      <div class="city">
+        <p>
+          Алматы — таулар мен мәдениеттің қаласы. Мұнда Шымбұлақ, Медеу, Көлсай
+          сияқты табиғи және мәдени орындар бар.
+        </p>
+        <iframe
+          src="https://www.youtube.com/embed/WHrDLbCjH0A"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <section id="astana">
+      <h2>🏙️ Астана</h2>
+      <div class="city">
+        <p>
+          Елордамыз Астана — заманауи сәулет пен дәстүрдің үйлесімі. Бәйтерек,
+          Хан Шатыр және мешіттер қаланың ажарын ашады.
+        </p>
+        <iframe
+          src="https://www.youtube.com/embed/82x5c6JyD4U"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <section id="burabay">
+      <h2>🏞️ Бурабай</h2>
+      <div class="city">
+        <p>
+          Бурабай — табиғаттың інжу-маржаны. Ормандар, таулар және мөлдір көлдер
+          бұл жерді ерекше етеді.
+        </p>
+        <iframe
+          src="https://www.youtube.com/embed/dHUb-FETo0Y"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <h2>📸 Фотогалерея</h2>
+      <div class="gallery">
+        <img src="https://avatars.mds.yandex.net/get-entity_search/4731417/979053692/orig" />
+        <img src="https://framerusercontent.com/images/mDpZ6y26EJCTGK2ydLFelAregw.jpg" />
+        <img src="https://avatars.mds.yandex.net/get-entity_search/5663642/1189718107/orig" />
+      </div>
+    </section>
+
+    <!-- TOURS -->
+    <section id="tours">
+      <h2>🎒 Тур пакеттері</h2>
+      <button class="tour-card" onclick="openTour('almatyTour')">Алматы — 35 000 ₸ (2 күн)</button>
+      <button class="tour-card" onclick="openTour('burabayTour')">Бурабай — 28 000 ₸ (1 күн)</button>
+      <button class="tour-card" onclick="openTour('astanaTour')">Астана — 40 000 ₸ (3 күн)</button>
+    </section>
+
+    <!-- TOUR DETAILS PAGES -->
+    <section id="tourDetails" style="display:none; padding:60px 20px;">
+      <button onclick="closeTour()" style="margin-bottom:20px;">◀ Қайту</button>
+      <div id="almatyTour" class="city" style="display:none;">
+        <h2>Алматы туры</h2>
+        <p><strong>Бағасы:</strong> 35 000 ₸</p>
+        <p><strong>Ұзақтығы:</strong> 2 күн</p>
+        <p><strong>Бұл турға кіреді:</strong></p>
+        <ul style="text-align:left; max-width:600px; margin:auto;">
+          <li>Қонақүй: 4⭐ «Medeu Hotel»</li>
+          <li>Тасымал: Алматы ішіндегі трансфер</li>
+          <li>Таңғы ас</li>
+          <li>Экскурсиялар: Медеу, Шымбұлақ, Көк-Төбе</li>
+        </ul>
+      </div>
+
+      <div id="burabayTour" class="city" style="display:none;">
+        <h2>Бурабай туры</h2>
+        <p><strong>Бағасы:</strong> 28 000 ₸</p>
+        <p><strong>Ұзақтығы:</strong> 1 күн</p>
+        <p><strong>Бұл турға кіреді:</strong></p>
+        <ul style="text-align:left; max-width:600px; margin:auto;">
+          <li>Автобуспен барып-қайту</li>
+          <li>Түсірілім алаңдарына бару: Жұмбақтас, Оқжетпес</li>
+          <li>Табиғатпен серуен</li>
+          <li>Түскі ас</li>
+        </ul>
+      </div>
+
+      <div id="astanaTour" class="city" style="display:none;">
+        <h2>Астана туры</h2>
+        <p><strong>Бағасы:</strong> 40 000 ₸</p>
+        <p><strong>Ұзақтығы:</strong> 3 күн</p>
+        <p><strong>Бұл турға кіреді:</strong></p>
+        <ul style="text-align:left; max-width:600px; margin:auto;">
+          <li>Қонақүй: 4⭐ "Hampton by Hilton"</li>
+          <li>Таңғы ас</li>
+          <li>Экскурсиялар: Бәйтерек, Хан Шатыр, Әзірет-Сұлтан мешіті</li>
+          <li>Қала ішіндегі жолақы</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <h2>⭐ Пікір қалдыру</h2>
+      <div class="review-box">
+        <textarea id="reviewText" placeholder="Пікіріңізді жазыңыз..."></textarea
+        ><br />
+        <button onclick="addReview()">Жіберу</button>
+      </div>
+      <div id="reviewList"></div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz">
+      <h2>❓ Викторина</h2>
+      <p>Бурабай қай облыста орналасқан?</p>
+      <button onclick="quizAnswer('true')">Ақмола облысы</button>
+      <button onclick="quizAnswer('false')">Алматы облысы</button>
+      <p id="quizResult"></p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>📞 Байланыс</h2>
+      <p>Email: n.amangali2008@gmail.com</p>
+      <p>Телефон: +7 (702) 349-7657</p>
+    </section>
+
+    <footer>
+      <p>© 2025 Қазақстан Туризмі. Барлық құқықтар қорғалған. (by.Nurtai)</p>
+    </footer>
+
+    <!-- BOOKING FORM -->
+    <section id="booking">
+      <h2>📝 Турға тіркелу</h2>
+      <div class="city">
+        <input id="bookName" placeholder="Аты-жөні" style="width:80%; padding:10px; border-radius:8px; border:1px solid #888;"><br><br>
+        <input id="bookPhone" placeholder="Телефон" style="width:80%; padding:10px; border-radius:8px; border:1px solid #888;"><br><br>
+        <select id="bookTour" style="width:82%; padding:10px; border-radius:8px; border:1px solid #888;">
+          <option>Алматы</option>
+          <option>Бурабай</option>
+          <option>Астана</option>
+        </select><br><br>
+        <button onclick="sendBooking()">Жіберу</button>
+        <p id="bookingResult"></p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2>❓ Жиі қойылатын сұрақтар</h2>
+      <div class="city">
+        <details><summary>Бағаға не кіреді?</summary><p>Тұру, жолақы және экскурсиялар.</p></details>
+        <details><summary>Балаларға жеңілдік бар ма?</summary><p>5 жасқа дейін тегін.</p></details>
+        <details><summary>Қайдан шығамыз?</summary><p>Әр турда көрсетілген жиналу орны.</p></details>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section id="map">
+      <h2>🗺️ Тур бағыт картасы</h2>
+      <div class="city">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d403542.5989971168!2d69.03622965!3d52.94921355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x424caa9556c5df2b%3A0x9dc1a48d40c88001!2sBurabay!5e0!3m2!1skk!2skz!4v1705660000000" style="width:100%; height:300px; border-radius:12px;"></iframe>
+      </div>
+    </section>
+
+    <!-- DARK MODE BUTTON -->
+    <button onclick="toggleDark()" style="position:fixed; bottom:20px; right:20px; padding:10px 20px; border-radius:10px;">Түнгі режим</button>
+  </div>
+
+  <script>
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const error = document.getElementById("error");
+
+      if (username === "admin" && password === "1234") {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("mainPage").style.display = "block";
+        window.scrollTo(0, 0);
+      } else {
+        error.textContent = "❌ Қате логин немесе пароль!";
+      }
+    }
+
+    document.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") login();
+    });
+
+    function addReview() {
+      let text = document.getElementById("reviewText").value.trim();
+      if (text === "") return;
+
+      let div = document.createElement("div");
+      div.className = "review-box";
+      div.innerHTML = `<strong>Аноним:</strong> ${text} <br><small>${new Date().toLocaleString()}</small>`;
+
+      document.getElementById("reviewList").appendChild(div);
+      document.getElementById("reviewText").value = "";
+    }
+
+    function quizAnswer(isCorrect) {
+      let result = document.getElementById("quizResult");
+      result.textContent =
+        isCorrect === "true"
+          ? "Дұрыс! 🎉 Сіз нағыз саяхатшысыз!"
+          : "Қате 😅 Тағы байқап көр!";
+    }
+
+    /* Smooth scroll */
+    document.querySelectorAll("nav a").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        document
+          .querySelector(link.getAttribute("href"))
+          .scrollIntoView({ behavior: "smooth" });
+      });
+    });
+  
+    function openTour(tourId) {
+      document.getElementById('mainPage').style.display = 'block';
+      document.getElementById('tourDetails').style.display = 'block';
+
+      document.querySelectorAll('#tourDetails .city').forEach(div => div.style.display = 'none');
+      document.getElementById(tourId).style.display = 'block';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeTour() {
+      document.getElementById('tourDetails').style.display = 'none';
+    }
+  
+    function sendBooking() {
+      let name = bookName.value;
+      let phone = bookPhone.value;
+      if(!name || !phone){ bookingResult.textContent = 'Толтырыңыз!'; return; }
+      bookingResult.textContent = 'Өтініш қабылданды!';
+    }
+
+    function toggleDark(){
+      document.body.classList.toggle('dark');
+    }
+  </script>
+</body>
+</html>
